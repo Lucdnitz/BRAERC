@@ -1,20 +1,22 @@
-import {TouchableOpacity, View, Text} from 'react-native';
+import {TouchableOpacity, View, Text, StyleProp, ViewStyle} from 'react-native';
 
 import { StyleSheet } from 'react-native';
 
 export interface BotaoProps {
   testID?: string,
   onPress: () => void,
+  texto: string,
+  containerStyle?: StyleProp<ViewStyle>,
 }
 
 export function Botao(props: BotaoProps) {
 
   return (
     <TouchableOpacity onPress={props.onPress} testID={props.testID}>
-      <View style={stylesheet.root} testID={props.testID}>
+      <View style={[stylesheet.root, props.containerStyle]} testID={props.testID}>
         <View style={stylesheet.rectangle4} testID="1:11">
         <Text style={stylesheet.sampleText} testID="1:13">
-          {`SAMPLE TEXT`}
+          {props.texto}
         </Text>
         </View>
       </View>
@@ -28,7 +30,7 @@ const stylesheet = StyleSheet.create({
     height: 21,
   },
   rectangle4: {
-    width: 169,
+    width: 130,
     height: 21,
     flexShrink: 0,
     borderRadius: 5,
@@ -39,7 +41,7 @@ const stylesheet = StyleSheet.create({
   sampleText: {
     color: 'rgba(0, 0, 0, 1)',
     textAlign: 'center',
-    fontFamily: 'Inter',
+    fontFamily: 'serif',
     fontSize: 12,
     fontStyle: 'normal',
     fontWeight: '400',
